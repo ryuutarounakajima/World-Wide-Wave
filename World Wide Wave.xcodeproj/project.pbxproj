@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6C8483FE2CA57D5300CE6B1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8483FD2CA57D5300CE6B1E /* AppDelegate.swift */; };
+		6C8484002CA57D5300CE6B1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8483FF2CA57D5300CE6B1E /* SceneDelegate.swift */; };
+		6C8484022CA57D5300CE6B1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8484012CA57D5300CE6B1E /* ViewController.swift */; };
+		6C8484052CA57D5300CE6B1E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6C8484042CA57D5300CE6B1E /* Base */; };
+		6C8484082CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C8484062CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodeld */; };
+		6C84840A2CA57D5400CE6B1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C8484092CA57D5400CE6B1E /* Assets.xcassets */; };
+		6C84840D2CA57D5400CE6B1E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6C84840C2CA57D5400CE6B1E /* Base */; };
+		6C8484182CA57D5500CE6B1E /* World_Wide_WaveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8484172CA57D5500CE6B1E /* World_Wide_WaveTests.swift */; };
+		6C8484222CA57D5500CE6B1E /* World_Wide_WaveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8484212CA57D5500CE6B1E /* World_Wide_WaveUITests.swift */; };
+		6C8484242CA57D5500CE6B1E /* World_Wide_WaveUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8484232CA57D5500CE6B1E /* World_Wide_WaveUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6C8484142CA57D5500CE6B1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C8483F22CA57D5300CE6B1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C8483F92CA57D5300CE6B1E;
+			remoteInfo = "World Wide Wave";
+		};
+		6C84841E2CA57D5500CE6B1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C8483F22CA57D5300CE6B1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C8483F92CA57D5300CE6B1E;
+			remoteInfo = "World Wide Wave";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6C8483FA2CA57D5300CE6B1E /* World Wide Wave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "World Wide Wave.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C8483FD2CA57D5300CE6B1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6C8483FF2CA57D5300CE6B1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6C8484012CA57D5300CE6B1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6C8484042CA57D5300CE6B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6C8484072CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = World_Wide_Wave.xcdatamodel; sourceTree = "<group>"; };
+		6C8484092CA57D5400CE6B1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6C84840C2CA57D5400CE6B1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6C84840E2CA57D5400CE6B1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C8484132CA57D5500CE6B1E /* World Wide WaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Wide WaveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C8484172CA57D5500CE6B1E /* World_Wide_WaveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Wide_WaveTests.swift; sourceTree = "<group>"; };
+		6C84841D2CA57D5500CE6B1E /* World Wide WaveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "World Wide WaveUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C8484212CA57D5500CE6B1E /* World_Wide_WaveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Wide_WaveUITests.swift; sourceTree = "<group>"; };
+		6C8484232CA57D5500CE6B1E /* World_Wide_WaveUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World_Wide_WaveUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6C8483F72CA57D5300CE6B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C8484102CA57D5500CE6B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C84841A2CA57D5500CE6B1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6C8483F12CA57D5300CE6B1E = {
+			isa = PBXGroup;
+			children = (
+				6C8483FC2CA57D5300CE6B1E /* World Wide Wave */,
+				6C8484162CA57D5500CE6B1E /* World Wide WaveTests */,
+				6C8484202CA57D5500CE6B1E /* World Wide WaveUITests */,
+				6C8483FB2CA57D5300CE6B1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6C8483FB2CA57D5300CE6B1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C8483FA2CA57D5300CE6B1E /* World Wide Wave.app */,
+				6C8484132CA57D5500CE6B1E /* World Wide WaveTests.xctest */,
+				6C84841D2CA57D5500CE6B1E /* World Wide WaveUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6C8483FC2CA57D5300CE6B1E /* World Wide Wave */ = {
+			isa = PBXGroup;
+			children = (
+				6C8483FD2CA57D5300CE6B1E /* AppDelegate.swift */,
+				6C8483FF2CA57D5300CE6B1E /* SceneDelegate.swift */,
+				6C8484012CA57D5300CE6B1E /* ViewController.swift */,
+				6C8484032CA57D5300CE6B1E /* Main.storyboard */,
+				6C8484092CA57D5400CE6B1E /* Assets.xcassets */,
+				6C84840B2CA57D5400CE6B1E /* LaunchScreen.storyboard */,
+				6C84840E2CA57D5400CE6B1E /* Info.plist */,
+				6C8484062CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodeld */,
+			);
+			path = "World Wide Wave";
+			sourceTree = "<group>";
+		};
+		6C8484162CA57D5500CE6B1E /* World Wide WaveTests */ = {
+			isa = PBXGroup;
+			children = (
+				6C8484172CA57D5500CE6B1E /* World_Wide_WaveTests.swift */,
+			);
+			path = "World Wide WaveTests";
+			sourceTree = "<group>";
+		};
+		6C8484202CA57D5500CE6B1E /* World Wide WaveUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6C8484212CA57D5500CE6B1E /* World_Wide_WaveUITests.swift */,
+				6C8484232CA57D5500CE6B1E /* World_Wide_WaveUITestsLaunchTests.swift */,
+			);
+			path = "World Wide WaveUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6C8483F92CA57D5300CE6B1E /* World Wide Wave */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C8484272CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide Wave" */;
+			buildPhases = (
+				6C8483F62CA57D5300CE6B1E /* Sources */,
+				6C8483F72CA57D5300CE6B1E /* Frameworks */,
+				6C8483F82CA57D5300CE6B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "World Wide Wave";
+			productName = "World Wide Wave";
+			productReference = 6C8483FA2CA57D5300CE6B1E /* World Wide Wave.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6C8484122CA57D5500CE6B1E /* World Wide WaveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C84842A2CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide WaveTests" */;
+			buildPhases = (
+				6C84840F2CA57D5500CE6B1E /* Sources */,
+				6C8484102CA57D5500CE6B1E /* Frameworks */,
+				6C8484112CA57D5500CE6B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C8484152CA57D5500CE6B1E /* PBXTargetDependency */,
+			);
+			name = "World Wide WaveTests";
+			productName = "World Wide WaveTests";
+			productReference = 6C8484132CA57D5500CE6B1E /* World Wide WaveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6C84841C2CA57D5500CE6B1E /* World Wide WaveUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C84842D2CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide WaveUITests" */;
+			buildPhases = (
+				6C8484192CA57D5500CE6B1E /* Sources */,
+				6C84841A2CA57D5500CE6B1E /* Frameworks */,
+				6C84841B2CA57D5500CE6B1E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C84841F2CA57D5500CE6B1E /* PBXTargetDependency */,
+			);
+			name = "World Wide WaveUITests";
+			productName = "World Wide WaveUITests";
+			productReference = 6C84841D2CA57D5500CE6B1E /* World Wide WaveUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6C8483F22CA57D5300CE6B1E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					6C8483F92CA57D5300CE6B1E = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					6C8484122CA57D5500CE6B1E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6C8483F92CA57D5300CE6B1E;
+					};
+					6C84841C2CA57D5500CE6B1E = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6C8483F92CA57D5300CE6B1E;
+					};
+				};
+			};
+			buildConfigurationList = 6C8483F52CA57D5300CE6B1E /* Build configuration list for PBXProject "World Wide Wave" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6C8483F12CA57D5300CE6B1E;
+			productRefGroup = 6C8483FB2CA57D5300CE6B1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6C8483F92CA57D5300CE6B1E /* World Wide Wave */,
+				6C8484122CA57D5500CE6B1E /* World Wide WaveTests */,
+				6C84841C2CA57D5500CE6B1E /* World Wide WaveUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6C8483F82CA57D5300CE6B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C84840A2CA57D5400CE6B1E /* Assets.xcassets in Resources */,
+				6C84840D2CA57D5400CE6B1E /* Base in Resources */,
+				6C8484052CA57D5300CE6B1E /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C8484112CA57D5500CE6B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C84841B2CA57D5500CE6B1E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C8483F62CA57D5300CE6B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C8484022CA57D5300CE6B1E /* ViewController.swift in Sources */,
+				6C8483FE2CA57D5300CE6B1E /* AppDelegate.swift in Sources */,
+				6C8484082CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodeld in Sources */,
+				6C8484002CA57D5300CE6B1E /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C84840F2CA57D5500CE6B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C8484182CA57D5500CE6B1E /* World_Wide_WaveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C8484192CA57D5500CE6B1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6C8484222CA57D5500CE6B1E /* World_Wide_WaveUITests.swift in Sources */,
+				6C8484242CA57D5500CE6B1E /* World_Wide_WaveUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6C8484152CA57D5500CE6B1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C8483F92CA57D5300CE6B1E /* World Wide Wave */;
+			targetProxy = 6C8484142CA57D5500CE6B1E /* PBXContainerItemProxy */;
+		};
+		6C84841F2CA57D5500CE6B1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C8483F92CA57D5300CE6B1E /* World Wide Wave */;
+			targetProxy = 6C84841E2CA57D5500CE6B1E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6C8484032CA57D5300CE6B1E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C8484042CA57D5300CE6B1E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6C84840B2CA57D5400CE6B1E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C84840C2CA57D5400CE6B1E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6C8484252CA57D5500CE6B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6C8484262CA57D5500CE6B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6C8484282CA57D5500CE6B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "World Wide Wave/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-Wave";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6C8484292CA57D5500CE6B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "World Wide Wave/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-Wave";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6C84842B2CA57D5500CE6B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-WaveTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/World Wide Wave.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/World Wide Wave";
+			};
+			name = Debug;
+		};
+		6C84842C2CA57D5500CE6B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-WaveTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/World Wide Wave.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/World Wide Wave";
+			};
+			name = Release;
+		};
+		6C84842E2CA57D5500CE6B1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-WaveUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "World Wide Wave";
+			};
+			name = Debug;
+		};
+		6C84842F2CA57D5500CE6B1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JRKRYNA77K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ride.World-Wide-WaveUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "World Wide Wave";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C8483F52CA57D5300CE6B1E /* Build configuration list for PBXProject "World Wide Wave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C8484252CA57D5500CE6B1E /* Debug */,
+				6C8484262CA57D5500CE6B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C8484272CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide Wave" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C8484282CA57D5500CE6B1E /* Debug */,
+				6C8484292CA57D5500CE6B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C84842A2CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide WaveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C84842B2CA57D5500CE6B1E /* Debug */,
+				6C84842C2CA57D5500CE6B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6C84842D2CA57D5500CE6B1E /* Build configuration list for PBXNativeTarget "World Wide WaveUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6C84842E2CA57D5500CE6B1E /* Debug */,
+				6C84842F2CA57D5500CE6B1E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6C8484062CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6C8484072CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodel */,
+			);
+			currentVersion = 6C8484072CA57D5300CE6B1E /* World_Wide_Wave.xcdatamodel */;
+			path = World_Wide_Wave.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6C8483F22CA57D5300CE6B1E /* Project object */;
+}
