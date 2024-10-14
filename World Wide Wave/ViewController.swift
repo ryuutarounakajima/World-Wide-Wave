@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import AuthenticationServices
+import CoreData
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ASAuthorizationControllerDelegate {
     
-    private let  imageView: UIImageView = {
+    @IBOutlet weak var signUpImageView: UIImageView!
+    
+    @IBOutlet weak var signUpWithApple: UIButton!
+    
+    private let  imageLogo: UIImageView = {
         
         let imageView = UIImageView()
         imageView.image = UIImage(named: "WaveLogLogo")
@@ -27,6 +33,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setUp()
+        animateZoom()
+        
+        
+    }
+    
+    @IBAction func SignUpWithAppleTapped(_ sender: Any) {
+        performAppleSingnIn()
+    }
+    
+    func setUp() {
+        
+        signUpImageView.layer.cornerRadius = 20
+        signUpImageView.clipsToBounds = true
+        signUpImageView.contentMode = .scaleAspectFill
+    }
+    
+    //MARK: - Zoom Animation
+    private func animateZoom() {
         
         gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -40,26 +65,21 @@ class ViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 1, y: 0)
         
         view.layer.addSublayer(gradientLayer)
-        view.addSubview(imageView)
+        view.addSubview(imageLogo)
         
         NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 200),
-            imageView.heightAnchor.constraint(equalToConstant: 200)
+            imageLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageLogo.widthAnchor.constraint(equalToConstant: 200),
+            imageLogo.heightAnchor.constraint(equalToConstant: 200)
         ])
         
-        animateZoom()
-    }
-    
-    private func animateZoom() {
-        
-        imageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        imageLogo.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
         UIView.animate(withDuration: 2.0, delay: 0, options: [.curveEaseOut],
                        animations: {
-            self.imageView.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-            self.imageView.alpha = 0.0
+            self.imageLogo.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+            self.imageLogo.alpha = 0.0
             
         }, completion: nil)
         
@@ -74,6 +94,15 @@ class ViewController: UIViewController {
         
             
     }
+    
+    //MARK: - Apple Singn-IN function
+    func performAppleSingnIn() {
+        
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+    }
+    
 
 }
 
