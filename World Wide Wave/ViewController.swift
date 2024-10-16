@@ -101,6 +101,11 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
         
+        let authorizationContoller = ASAuthorizationController(authorizationRequests: [request])
+        
+        authorizationContoller.delegate = self
+        authorizationContoller.performRequests()
+        
     }
     
 
