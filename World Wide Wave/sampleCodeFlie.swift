@@ -11,15 +11,6 @@ import Foundation
 
 /*
  
-// Apple Sign-In function
-func performAppleSignIn() {
-    let request = ASAuthorizationAppleIDProvider().createRequest()
-    request.requestedScopes = [.fullName, .email]
-    
-    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-    authorizationController.delegate = self
-    authorizationController.performRequests()
-}
 
 // ASAuthorizationControllerDelegate methods
 func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {

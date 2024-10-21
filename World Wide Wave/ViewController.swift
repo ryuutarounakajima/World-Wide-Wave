@@ -108,6 +108,28 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
         
     }
     
+    //MARK: - ASAuthorizationControllerDelegate methods
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let useIdentifier = appleIDCredential.user
+            
+            let fullname = appleIDCredential.fullName
+            
+            let email = appleIDCredential.email
+            
+            
+            print("Login successful: \(useIdentifier), \(fullname?.givenName ?? "no name"), \(email ?? "no address")")
+        }
+        
+    }
+        
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: any Error) {
+        
+        print("Error: \(error.localizedDescription)")
+    }
+    
 
 }
 
