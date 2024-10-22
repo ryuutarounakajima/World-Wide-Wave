@@ -121,6 +121,15 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
             
             
             print("Login successful: \(useIdentifier), \(fullname?.givenName ?? "no name"), \(email ?? "no address")")
+            
+          
+            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+            tabBarVC.tabBarController?.selectedIndex = 0
+            
+            self.view.window?.rootViewController = tabBarVC
+            self.view.window?.makeKeyAndVisible()
+            
+            
         }
         
     }
