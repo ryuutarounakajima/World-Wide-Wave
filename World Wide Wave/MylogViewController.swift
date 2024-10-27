@@ -8,7 +8,7 @@
 import UIKit
 import AuthenticationServices
 
-class ProfileViewController: UIViewController {
+class MylogViewController: UIViewController {
     
    
     @IBOutlet weak var logoutBuuton: UIBarButtonItem!
@@ -19,6 +19,9 @@ class ProfileViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         

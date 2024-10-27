@@ -43,11 +43,40 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
         performAppleSingnIn()
     }
     
-    func setUp() {
+    @IBAction func loginButton(_ sender: Any) {
+        
+        if isLoggedIn() {
+            
+            print("Already logged in")
+            
+            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+            tabBarVC.tabBarController?.selectedIndex = 0
+            
+            self.view.window?.rootViewController = tabBarVC
+            self.view.window?.makeKeyAndVisible()
+            
+        } else {
+            performAppleSingnIn()
+        }
+        
+    }
+    
+    
+    private func setUp() {
         
         signUpImageView.layer.cornerRadius = 20
         signUpImageView.clipsToBounds = true
         signUpImageView.contentMode = .scaleAspectFill
+
+       
+    }
+    
+    private func isLoggedIn() -> Bool {
+        
+        if let token = UserDefaults.standard.string(forKey: "appleAuthToken") {
+            return !token.isEmpty
+        }
+        return false
     }
     
     //MARK: - Zoom Animation
@@ -112,6 +141,9 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            let appleAuthToken = String(data:appleIDCredential.identityToken!, encoding: .utf8)
+            UserDefaults.standard.set(appleAuthToken, forKey: "appleAythToken")
             
             let useIdentifier = appleIDCredential.user
             
