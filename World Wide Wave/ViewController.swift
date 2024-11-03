@@ -143,7 +143,8 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             let appleAuthToken = String(data:appleIDCredential.identityToken!, encoding: .utf8)
-            UserDefaults.standard.set(appleAuthToken, forKey: "appleAythToken")
+            
+            UserDefaults.standard.set(appleAuthToken, forKey: "appleAuthToken")
             
             let useIdentifier = appleIDCredential.user
             

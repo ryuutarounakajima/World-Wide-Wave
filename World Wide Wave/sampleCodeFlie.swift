@@ -53,4 +53,39 @@ func saveUserInCoreData(userID: String, name: String?, email: String?) {
     }
 }
 }
+ 
+ // checking if user logged in or not
+ import UIKit
+ import AuthenticationServices
+
+ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+     var window: UIWindow?
+
+     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+ 
+ 
+ 
+ 
+         guard let windowScene = (scene as? UIWindowScene) else { return }
+
+         let window = UIWindow(windowScene: windowScene)
+
+         // ユーザーが既にログインしているかチェック
+         if UserDefaults.standard.bool(forKey: "appoleAuthToken") {
+             // ログイン済みの場合、メインタブバーを表示
+             let mainTabBarController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainTabBarController") as! UITabBarController
+             mainTabBarController.selectedIndex = 2  // 移動したいタブのインデックス
+
+             window.rootViewController = mainTabBarController
+         } else {
+             // ログイン画面を表示
+             let loginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LoginViewController")
+             window.rootViewController = loginViewController
+         }
+
+         self.window = window
+         window.makeKeyAndVisible()
+     }
+ }
 */
