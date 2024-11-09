@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="590" y="58"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Mylog View Controller-->
         <scene sceneID="IEq-Te-cxM">
             <objects>
-                <viewController id="2WR-XO-zyK" customClass="ProfileViewController" customModule="World_Wide_Wave" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2WR-XO-zyK" customClass="MylogViewController" customModule="World_Wide_Wave" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rJs-5E-bHH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

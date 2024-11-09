@@ -25,7 +25,7 @@ class MylogViewController: UIViewController {
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         
-        UserDefaults.standard.removeObject(forKey: "userIdentifier")
+        UserDefaults.standard.removeObject(forKey: "appleAuthToken")
         UserDefaults.standard.removeObject(forKey: "useremail")
         UserDefaults.standard.synchronize()
         
@@ -33,6 +33,8 @@ class MylogViewController: UIViewController {
             
             self.view.window?.rootViewController = viewController
             self.view.window?.makeKeyAndVisible()
+            
+            print("logout success")
         }
     }
     

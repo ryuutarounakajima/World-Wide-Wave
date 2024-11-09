@@ -88,4 +88,31 @@ func saveUserInCoreData(userID: String, name: String?, email: String?) {
          window.makeKeyAndVisible()
      }
  }
+ 
+ //ASAuthorizationControllerDelegate methods
+ 
+ func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+     
+     if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+         
+         let appleAuthToken = appleIDCredential.identityToken != nil ? String(data: appleIDCredential.identityToken!, encoding: .utf8) : "nilだよ~ん"
+         UserDefaults.standard.set(appleAuthToken, forKey: "appleAuthToken")
+         
+         let userIdentifier = appleIDCredential.user
+         let fullName = appleIDCredential.fullName
+         let email = appleIDCredential.email
+         
+         let identifierString = userIdentifier.isEmpty ? "nilだよ~ん" : userIdentifier
+         let givenName = fullName?.givenName ?? "nilだよ~ん"
+         let emailString = email ?? "nilだよ~ん"
+         
+         print("Login successful: \(identifierString), \(givenName), \(emailString)")
+         
+         let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
+         tabBarVC.tabBarController?.selectedIndex = 0
+         
+         self.view.window?.rootViewController = tabBarVC
+         self.view.window?.makeKeyAndVisible()
+     }
+ }
 */

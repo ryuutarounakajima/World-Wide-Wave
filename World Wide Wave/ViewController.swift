@@ -142,19 +142,33 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
         
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
-            let appleAuthToken = String(data:appleIDCredential.identityToken!, encoding: .utf8)
+            
+            
+            let appleAuthToken = appleIDCredential.identityToken != nil ? String(data: appleIDCredential.identityToken!, encoding: .utf8) : "nilだよ~ん"
             
             UserDefaults.standard.set(appleAuthToken, forKey: "appleAuthToken")
             
-            let useIdentifier = appleIDCredential.user
+           
             
-            let fullname = appleIDCredential.fullName
+            let userIdentifier = appleIDCredential.user
+            
+            let fullName = appleIDCredential.fullName
             
             let email = appleIDCredential.email
             
             
-            print("Login successful: \(useIdentifier), \(fullname?.givenName ?? "no name"), \(email ?? "no address")")
+            let identifierSting =
+            userIdentifier.isEmpty ? "nilだよ~ん" : userIdentifier
+            let givenName = fullName?.givenName ?? "nilだよ〜ん"
+            let emailSting = email ?? "nilだよ〜ん"
             
+            
+            
+           // print("Login success!: \(identifierSting), \(givenName), \(emailSting)")
+            print("appleAuthToken: \(appleAuthToken ?? "nilだよ~ん")")
+            print("userIdentifier: \(userIdentifier.isEmpty ? "nilだよ~ん" : userIdentifier)")
+            print("givenName: \(fullName?.givenName ?? "nilだよ~ん")")
+            print("email: \(email ?? "nilだよ~ん")")
           
             let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
             tabBarVC.tabBarController?.selectedIndex = 0
