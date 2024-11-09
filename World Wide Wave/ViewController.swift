@@ -156,19 +156,12 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
             
             let email = appleIDCredential.email
             
-            
-            let identifierSting =
-            userIdentifier.isEmpty ? "nilだよ~ん" : userIdentifier
-            let givenName = fullName?.givenName ?? "nilだよ〜ん"
-            let emailSting = email ?? "nilだよ〜ん"
-            
-            
-            
-           // print("Login success!: \(identifierSting), \(givenName), \(emailSting)")
             print("appleAuthToken: \(appleAuthToken ?? "nilだよ~ん")")
             print("userIdentifier: \(userIdentifier.isEmpty ? "nilだよ~ん" : userIdentifier)")
             print("givenName: \(fullName?.givenName ?? "nilだよ~ん")")
             print("email: \(email ?? "nilだよ~ん")")
+            print("login sucess!")
+            
           
             let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController")
             tabBarVC.tabBarController?.selectedIndex = 0
