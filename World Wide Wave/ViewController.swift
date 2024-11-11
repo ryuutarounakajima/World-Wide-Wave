@@ -18,7 +18,7 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate {
     private let  imageLogo: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "WaveLogLogo")
+        imageView.image = UIImage(named: "Logo")
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         

@@ -25,5 +25,37 @@
 			</array>
 		</dict>
 	</dict>
+    
+    
+    <key>CFBundleIcons</key>
+       <dict>
+           <key>CFBundlePrimaryIcon</key>
+           <dict>
+               <key>CFBundleIconFiles</key>
+               <array>
+                   <string>60.png</string>
+                   <string>120.png</string>
+                   <string>180.png</string>
+                   <string>Monochrome60.png</string>
+                   <string>Monochrome120.png</string>
+                   <string>Monochrome180.png</string>
+               </array>
+           </dict>
+       </dict>
+       <key>CFBundleIcons~ipad</key>
+       <dict>
+           <key>CFBundlePrimaryIcon</key>
+           <dict>
+               <key>CFBundleIconFiles</key>
+               <array>
+                   <string>76.png</string>
+                   <string>152.png</string>
+                   <string>167.png</string>
+                   <string>Monochrome76.png</string>
+                   <string>Monochrome152.png</string>
+                   <string>Monochrome167.png</string>
+               </array>
+           </dict>
+       </dict>
 </dict>
 </plist>
