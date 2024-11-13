@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import AuthenticationServices
 
 class MylogViewController: UIViewController {
@@ -18,6 +19,13 @@ class MylogViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let swiftUIView = MylogSwiftUIView()
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        
+        addChild(hostingController)
+        hostingController.view.frame = view.bounds
+        view.addSubview(hostingController.view)
+        hostingController.didMove(toParent: self)
     }
     
     
