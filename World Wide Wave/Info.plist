@@ -57,5 +57,9 @@
                </array>
            </dict>
        </dict>
+       
+       <key>NSLocationWhenInUseUsageDescriprition</key>
+       <string>Are you sure to get the location of this surf spot??</string>
+       
 </dict>
 </plist>

@@ -115,4 +115,62 @@ func saveUserInCoreData(userID: String, name: String?, email: String?) {
          self.view.window?.makeKeyAndVisible()
      }
  }
+ 
+ mark:: map setting uikit
+ import UIKit
+ import MapKit
+
+ class ViewController: UIViewController, CLLocationManagerDelegate {
+     var mapView: MKMapView!
+     var locationManager: CLLocationManager!
+
+     override func viewDidLoad() {
+         super.viewDidLoad()
+
+         // 地図を作成
+         mapView = MKMapView(frame: self.view.bounds)
+         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+         self.view.addSubview(mapView)
+
+         // 現在位置を表示する設定
+         mapView.showsUserLocation = true
+         mapView.userTrackingMode = .follow
+
+         // 位置情報の許可と設定
+         locationManager = CLLocationManager()
+         locationManager.delegate = self
+         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+         locationManager.requestWhenInUseAuthorization()
+         locationManager.startUpdatingLocation()
+     }
+
+     // 位置情報の許可状態が変更された場合の処理
+     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+         switch status {
+         case .authorizedWhenInUse, .authorizedAlways:
+             locationManager.startUpdatingLocation()
+         case .denied, .restricted:
+             print("位置情報の利用が許可されていません。")
+         default:
+             break
+         }
+     }
+
+     // 位置情報が更新された場合の処理
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+         guard let location = locations.last else { return }
+
+         // 現在位置を地図の中心に設定
+         let coordinate = location.coordinate
+         let region = MKCoordinateRegion(
+             center: coordinate,
+             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+         )
+         mapView.setRegion(region, animated: true)
+     }
+
+     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+         print("位置情報の取得に失敗しました: \(error.localizedDescription)")
+     }
+ }
 */
