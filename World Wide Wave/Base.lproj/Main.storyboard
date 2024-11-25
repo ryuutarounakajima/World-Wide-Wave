@@ -113,7 +113,10 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" restorationIdentifier="TabBarController" insetsLayoutMarginsFromSafeArea="NO" id="p4o-qc-Z2E">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="tableBackgroundColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="wO8-Bk-ELC" kind="relationship" relationship="viewControllers" id="WYF-cH-ZuX"/>
@@ -124,11 +127,19 @@
             </objects>
             <point key="canvasLocation" x="-263" y="58"/>
         </scene>
-        <!--My log-->
+        <!--Navigation Controller-->
         <scene sceneID="nyy-XJ-EQh">
             <objects>
                 <navigationController id="wO8-Bk-ELC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My log" image="book.pages" catalog="system" id="ZdU-A2-Mh2"/>
+                    <tabBarItem key="tabBarItem" title="" id="ZdU-A2-Mh2">
+                        <imageReference key="image" image="book.pages" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color systemColor="labelColor"/>
+                                <color systemColor="systemPinkColor"/>
+                                <color red="0.24638225859999999" green="1" blue="0.46337387590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJo-Ao-dl0">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -141,16 +152,16 @@
             </objects>
             <point key="canvasLocation" x="590" y="58"/>
         </scene>
-        <!--Wave-->
+        <!--Navigation Controller-->
         <scene sceneID="I6P-ee-9Cw">
             <objects>
                 <navigationController id="2rp-g0-JEC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Wave" id="X1U-9A-6ws">
-                        <imageReference key="image" image="waveform.path.ecg.rectangle" catalog="system" renderingMode="hierarchical">
+                    <tabBarItem key="tabBarItem" title="" id="X1U-9A-6ws">
+                        <imageReference key="image" image="waveform.path.ecg.rectangle" catalog="system" renderingMode="hierarchical" variableValue="0.80000000000000004">
                             <hierarchicalColors>
                                 <color systemColor="labelColor"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
+                                <color systemColor="systemPurpleColor"/>
+                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </hierarchicalColors>
                         </imageReference>
                     </tabBarItem>
@@ -216,14 +227,17 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tableBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
