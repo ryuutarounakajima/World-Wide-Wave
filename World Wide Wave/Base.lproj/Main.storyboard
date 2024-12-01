@@ -193,6 +193,21 @@
             </objects>
             <point key="canvasLocation" x="1479" y="785"/>
         </scene>
+        <!--Wave Info View Contrroler-->
+        <scene sceneID="oJY-1c-f7J">
+            <objects>
+                <viewController storyboardIdentifier="WaveInfoViewController" id="YUG-eP-pah" customClass="WaveInfoViewContrroler" customModule="World_Wide_Wave" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8wk-eW-2B4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="F31-Dt-XUU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tD8-Kw-77P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2244" y="785"/>
+        </scene>
         <!--Mylog View Controller-->
         <scene sceneID="IEq-Te-cxM">
             <objects>
