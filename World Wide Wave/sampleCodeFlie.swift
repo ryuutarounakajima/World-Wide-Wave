@@ -173,4 +173,90 @@ func saveUserInCoreData(userID: String, name: String?, email: String?) {
          print("位置情報の取得に失敗しました: \(error.localizedDescription)")
      }
  }
+ import UIKit
+ import MapKit
+
+ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+     var mkMapView: MKMapView!
+     var locationManager: CLLocationManager!
+     var selectedLocation: CLLocationCoordinate2D?
+     var isTransitioning = false
+
+     override func viewDidLoad() {
+         super.viewDidLoad()
+
+         // MapView setup
+         mkMapView = MKMapView(frame: self.view.bounds)
+         mkMapView.delegate = self
+         self.view.addSubview(mkMapView)
+
+         mkMapView.showsUserLocation = true
+         mkMapView.userTrackingMode = .follow
+
+         // Location manager setup
+         locationManager = CLLocationManager()
+         locationManager.delegate = self
+         locationManager.requestWhenInUseAuthorization()
+         locationManager.startUpdatingLocation()
+
+         // Add example annotation
+         let exampleAnnotation = MKPointAnnotation()
+         exampleAnnotation.coordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194) // Example coordinate
+         exampleAnnotation.title = "Example Location"
+         mkMapView.addAnnotation(exampleAnnotation)
+     }
+
+     // Annotation tap handling
+     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+         guard let annotation = view.annotation, !(annotation is MKUserLocation) else {
+             // Ignore user location annotation
+             return
+         }
+
+         if isTransitioning { return } // Prevent double transitions
+         isTransitioning = true
+
+         // Save selected annotation location
+         selectedLocation = annotation.coordinate
+
+         // Navigate to the WaveInfoViewController
+         navigateToWaveInfoViewController()
+     }
+
+     // Navigate to WaveInfoViewController
+     func navigateToWaveInfoViewController() {
+         let waveInfoVC = WaveInfoViewController()
+         waveInfoVC.coordinate = selectedLocation
+         navigationController?.pushViewController(waveInfoVC, animated: true)
+
+         // Reset the transition flag after navigation
+         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+             self.isTransitioning = false
+         }
+     }
+ }
+
+ class WaveInfoViewController: UIViewController {
+     var coordinate: CLLocationCoordinate2D?
+
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         view.backgroundColor = .white
+
+         // Display the passed coordinate
+         if let coordinate = coordinate {
+             let coordinateLabel = UILabel()
+             coordinateLabel.text = "Latitude: \(coordinate.latitude), Longitude: \(coordinate.longitude)"
+             coordinateLabel.textAlignment = .center
+             coordinateLabel.translatesAutoresizingMaskIntoConstraints = false
+
+             view.addSubview(coordinateLabel)
+             NSLayoutConstraint.activate([
+                 coordinateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                 coordinateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+             ])
+         }
+     }
+ }
+
 */

@@ -8,23 +8,21 @@
 
 import UIKit
 import MapKit
-
-
+import SwiftUI
 
 class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
     var mkMapView: MKMapView!
     var locationManager: CLLocationManager!
     var selectedLocation: CLLocationCoordinate2D?
-    var longPressTimer: Timer?
-    var isTranslateing: Bool?
+    var isTranstiting = false
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        
         
         mkMapView = MKMapView(frame: self.view.bounds)
         mkMapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -32,7 +30,7 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         mkMapView.showsUserLocation = true
         mkMapView.userTrackingMode = .follow
-        
+        //location manager setup
         let longPressGesuture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         mkMapView.addGestureRecognizer(longPressGesuture)
         
@@ -43,49 +41,84 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         locationManager.startUpdatingLocation()
         
         backToCurrentPositon()
-      //tabBarSetting()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
         mkMapView.delegate = self
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        isTranstiting = false
+        
+        if let mapView = self.mkMapView {
+            
+            for annotation in mapView.annotations {
+                mapView.deselectAnnotation(annotation, animated: true)
+            }
+        }
+        
+        
+    }
+    // segue for another page when annotain is tapped
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        guard let annotation = view.annotation, !(annotation is MKUserLocation) else {return}
+        
+        if isTranstiting {return}
+        isTranstiting = true
+        
+        selectedLocation = annotation.coordinate
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
+            
+            navigateToWaveInfoViewController()
+            isTranstiting = false
+        }
+        
+        
+    }
+    
     // Add this function to set custom image for annotation
-       func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-           
-           if annotation is MKUserLocation {
-               return nil
-           }
-           
-           let reuseIdentifier = "CustomAnnotation"
-           
-           var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
-           
-           if annotationView == nil {
-               annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-               annotationView?.canShowCallout = true
-           }
-           
-           // Set custom image for annotation
-           if let customImage = UIImage(named: "Logo") {
-               // Resize image to fit the annotation view
-               let resizedImage = resizeImage(image: customImage, to: CGSize(width: 30, height: 30))
-               annotationView?.image = resizedImage
-              
-           }
-           
-           return annotationView
-       }
-       
-       // Helper function to resize image to a specific size
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseIdentifier = "CustomAnnotation"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = true
+        }
+        
+        // Set custom image for annotation
+        if let customImage = UIImage(named: "Logo") {
+            // Resize image to fit the annotation view
+            let resizedImage = resizeImage(image: customImage, to: CGSize(width: 30, height: 30))
+            annotationView?.image = resizedImage
+            
+          
+            
+        }
+        
+        return annotationView
+    }
+    
+    
+    
+    
        func resizeImage(image: UIImage, to size: CGSize) -> UIImage {
            
            let rect = CGRect(origin: .zero, size: size)
            
            UIGraphicsBeginImageContextWithOptions(size, false, 2.0)
+         
            
            image.draw(in: rect)
            
@@ -110,28 +143,33 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
            return resizedImage ?? image
        }
     
-    func navigateToWaveInfoViewController() {
+       func navigateToWaveInfoViewController() {
         
-        let WaveInfoVC = WaveInfoViewContrroler()
-        WaveInfoVC.coordinate = selectedLocation!
-        navigationController?.pushViewController(WaveInfoVC, animated: true)
+        let waveInfoVC = WaveInfoViewContrroler()
+        waveInfoVC.coordinate = selectedLocation!
+           waveInfoVC.timestamp = Date()
+           
+        navigationController?.pushViewController(waveInfoVC, animated: true)
        
     }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    
+       func backToCurrentPositon() {
+        
+        let resetButton = UIButton(frame: CGRect(x: self.view.bounds.width - 60, y: view.bounds.height - 110, width: 50, height: 50))
+        resetButton.backgroundColor = UIColor.orange.withAlphaComponent(0.5)
+        resetButton.layer.cornerRadius = 25
+        resetButton.clipsToBounds = true
+        resetButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
+        resetButton.tintColor = UIColor.brown
+        resetButton.addTarget(self, action: #selector(resetToUserLocation), for: .touchUpInside)
+               
+                self.view.addSubview(resetButton)
+    }
+      
+       func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
          
         print("failed to get location: \(error.localizedDescription)")
         
-        /*let fakeLocation = CLLocationCoordinate2D(latitude: 35.3225, longitude: 140.3654)
-        let region = MKCoordinateRegion(center: fakeLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        mapView.setRegion(region, animated: true)
-        
-        let annotaion = MKPointAnnotation()
-        annotaion.coordinate = fakeLocation
-        annotaion.title = "AQI"
-        annotaion.subtitle = "100"
-        mapView.addAnnotation(annotaion)
-        */
     }
 
     @objc func resetToUserLocation() {
@@ -150,41 +188,26 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             let touchPoint = gestureRecognizer.location(in: mkMapView)
                     let coordinate = mkMapView.convert(touchPoint, toCoordinateFrom: mkMapView)
 
-                    // 既存のアノテーションを削除してから新しいアノテーションを追加
+                    
                     mkMapView.removeAnnotations(mkMapView.annotations)
 
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
                     mkMapView.addAnnotation(annotation)
 
-                    // 数秒後に遷移
+                   
                     selectedLocation = coordinate
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.navigateToWaveInfoViewController()
                     }
                 
             
-        } else if gestureRecognizer.state == .ended || gestureRecognizer.state == .cancelled {
-            
-            longPressTimer?.invalidate()
-            longPressTimer = nil
         }
-        
     }
     
     
-    private func backToCurrentPositon() {
-        
-        let resetButton = UIButton(frame: CGRect(x: self.view.bounds.width - 60, y: view.bounds.height - 110, width: 50, height: 50))
-        resetButton.backgroundColor = UIColor.orange.withAlphaComponent(0.5)
-        resetButton.layer.cornerRadius = 25
-        resetButton.clipsToBounds = true
-        resetButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
-        resetButton.tintColor = UIColor.brown
-        resetButton.addTarget(self, action: #selector(resetToUserLocation), for: .touchUpInside)
-               
-                self.view.addSubview(resetButton)
-    }
+    
     
    
 }
