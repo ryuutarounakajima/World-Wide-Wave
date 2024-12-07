@@ -15,7 +15,7 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     var mkMapView: MKMapView!
     var locationManager: CLLocationManager!
     var selectedLocation: CLLocationCoordinate2D?
-    var isTranstiting = false
+    var isTransiting = false
     
     
     
@@ -51,13 +51,18 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        isTranstiting = false
+        isTransiting = false
         
         if let mapView = self.mkMapView {
             
             for annotation in mapView.annotations {
                 mapView.deselectAnnotation(annotation, animated: true)
             }
+        }
+        
+        if let annotaionView = self.view.viewWithTag(100) {
+            
+            addInfiniteAnimation(to: annotaionView)
         }
         
         
@@ -67,15 +72,15 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         
         guard let annotation = view.annotation, !(annotation is MKUserLocation) else {return}
         
-        if isTranstiting {return}
-        isTranstiting = true
+        if isTransiting {return}
+        isTransiting = true
         
         selectedLocation = annotation.coordinate
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [self] in
             
             navigateToWaveInfoViewController()
-            isTranstiting = false
+            isTransiting = false
         }
         
         
@@ -102,8 +107,11 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             // Resize image to fit the annotation view
             let resizedImage = resizeImage(image: customImage, to: CGSize(width: 30, height: 30))
             annotationView?.image = resizedImage
-            
-          
+            annotationView?.tag = 100
+            if let cirlceAnimation = annotationView {
+                
+                addInfiniteAnimation(to: cirlceAnimation)
+            }
             
         }
         
@@ -111,7 +119,22 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     
-    
+    func addInfiniteAnimation(to view: UIView) {
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.toValue = Double.pi * 2
+        rotationAnimation.duration = 2.4
+        rotationAnimation.repeatCount = .infinity
+        view.layer.add(rotationAnimation, forKey: "rotationAnimation")
+        
+        let blinkAnimation = CABasicAnimation(keyPath: "opacity")
+        blinkAnimation.fromValue = 1.0
+        blinkAnimation.toValue = 0.0
+        blinkAnimation.duration = 1.2
+        blinkAnimation.autoreverses = true
+        blinkAnimation.repeatCount = .infinity
+        view.layer.add(blinkAnimation, forKey: "blinkAnimation")
+    }
     
        func resizeImage(image: UIImage, to size: CGSize) -> UIImage {
            
