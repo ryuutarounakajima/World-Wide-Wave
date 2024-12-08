@@ -183,7 +183,7 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         resetButton.layer.cornerRadius = 25
         resetButton.clipsToBounds = true
         resetButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
-        resetButton.tintColor = UIColor.brown
+           resetButton.tintColor = UIColor.secondarySystemBackground
         resetButton.addTarget(self, action: #selector(resetToUserLocation), for: .touchUpInside)
                
                 self.view.addSubview(resetButton)
