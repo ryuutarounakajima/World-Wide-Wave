@@ -54,7 +54,7 @@ struct MediaPicker: View {
 struct WaveInfoSwiftUIView: View {
     
     
-    @State private var waveSize: String = "shorebreak"
+    @State private var waveSize: String = ""
     @State private var selectedSize: String = ""
     @State private var isSizeSelect: Bool = false
     @State private var isPickerVisble: Bool = false
@@ -106,19 +106,22 @@ struct WaveInfoSwiftUIView: View {
                        
                                 Form {
                                     
-                                    Section(header: Text("size")) {
-                                        ZStack{
+                                    Section(header:
+                                        Text("Size")
+                                            .font(.headline)
                                             
+                                            .cornerRadius(10)
+                                            .shadow(radius: 2, x: 4, y: 6)
+                                    
+                                    )
+                                    {
+                                        ZStack{
                                             Text(waveSize)
-                                                .onTapGesture {
-                                                    withAnimation {
-                                                        isSizeSelect.toggle()
-                                                    }
-                                                }
                                         }
                                         if isSizeSelect {
                                             Picker("", selection: $selectedSize){
-                                                Text("Shorebreak").tag("Shorebreak")
+                                                Text("Shorebreak")
+                                                    .tag("Shorebreak")
                                                 Text("Small")
                                                     .tag("Small")
                                                 Text("Chest-high")
@@ -146,6 +149,13 @@ struct WaveInfoSwiftUIView: View {
                                             
                                         }
                                     }
+                                    .headerProminence(.increased)
+                                    .onTapGesture {
+                                        withAnimation {
+                                            isSizeSelect.toggle()
+                                        }
+                                    }
+                                   
                                     
                                    
                                     
