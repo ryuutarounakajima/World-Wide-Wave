@@ -25,7 +25,7 @@ struct MediaPicker: View {
                     .foregroundStyle(.cyan)
                     .background(Color.yellow)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                
+                    .bold()
                 
                 
             }
@@ -40,6 +40,7 @@ struct MediaPicker: View {
                     .foregroundStyle(.white)
                     .background(Color.brown)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .bold()
                 
                
             }
@@ -53,7 +54,7 @@ struct MediaPicker: View {
 struct WaveInfoSwiftUIView: View {
     
     
-    @State private var waveSize: String = ""
+    @State private var waveSize: String = "shorebreak"
     @State private var selectedSize: String = ""
     @State private var isSizeSelect: Bool = false
     @State private var isPickerVisble: Bool = false
@@ -94,7 +95,7 @@ struct WaveInfoSwiftUIView: View {
                                     .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                                 
                             }
-                                
+                            
                         }.sheet(isPresented: $isPickerVisble) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
                                 .presentationDetents([.fraction(0.25), .medium, .large])
@@ -102,45 +103,55 @@ struct WaveInfoSwiftUIView: View {
                             
                             
                         }
-                        
-                        Form {
-                            Section("SIZE") {
-                                ZStack{
-                                    
-                                    TextField("shorebreak", text: $waveSize)
-                                        .disabled(true)
-                                }
-                            }
-                            
-                            .headerProminence(.increased)
-                            .onTapGesture {
-                                withAnimation {
-                                    isSizeSelect.toggle()
-                                }
-                            }
-                            
-                            if isSizeSelect {
-                                Picker("", selection: $selectedSize){
-                                    Text("Shorebreak").tag("Shorebreak")
-                                    Text("minimal")
-                                        .tag("minimal")
-                                }
-                                .pickerStyle(.menu)
-                                .labelsHidden()
-                                .frame(width: .infinity)
-                                .onChange( of: selectedSize) {
-                                   
-                                    waveSize = selectedSize
-                                    withAnimation{
-                                        isSizeSelect = false
-                                    }
-                                }
-                                
-                                
-                            }
-                        }.cornerRadius(20)
-                            .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                        
+                                Form {
+                                    
+                                    Section(header: Text("size")) {
+                                        ZStack{
+                                            
+                                            Text(waveSize)
+                                                .onTapGesture {
+                                                    withAnimation {
+                                                        isSizeSelect.toggle()
+                                                    }
+                                                }
+                                        }
+                                        if isSizeSelect {
+                                            Picker("", selection: $selectedSize){
+                                                Text("Shorebreak").tag("Shorebreak")
+                                                Text("Small")
+                                                    .tag("Small")
+                                                Text("Chest-high")
+                                                    .tag("Chest-high")
+                                                Text("Head-high")
+                                                    .tag("Head-high")
+                                                Text("Overhead")
+                                                    .tag("Overhead")
+                                                Text("Double")
+                                                    .tag("Double")
+                                                Text("Triple over")
+                                                    .tag("Triple over")
+                                            }
+                                            .pickerStyle(.wheel)
+                                            .labelsHidden()
+                                            .frame(width: .infinity)
+                                            .onChange( of: selectedSize) {
+                                                
+                                                waveSize = selectedSize
+                                                withAnimation{
+                                                    isSizeSelect = false
+                                                }
+                                            }
+                                            
+                                            
+                                        }
+                                    }
+                                    
+                                   
+                                    
+                                }.cornerRadius(20)
+                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                        
                         //locations
                         VStack(alignment: .trailing) {
                             
@@ -156,6 +167,7 @@ struct WaveInfoSwiftUIView: View {
                         //The time
                         Text("\(timestamp)")
                     }
+                    
                 }
                 .frame(maxHeight: .infinity)
                 .ignoresSafeArea()
