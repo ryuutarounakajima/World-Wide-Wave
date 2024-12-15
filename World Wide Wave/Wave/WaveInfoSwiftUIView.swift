@@ -10,146 +10,158 @@ import MapKit
 import CoreLocation
 import AVKit
 
-struct WaveInfoSwiftUIView: View {
-    
-    @State private var waveSize: String = ""
-    @State private var isPickderVisible: Bool = false
-    var coordinate: CLLocationCoordinate2D
-    var timestamp: Date
-    var image: UIImage?
-    var videoURL: URL?
+struct MediaPicker: View {
+    @Binding var selectedImage: UIImage?
+    @Binding var selectedVideoURL: URL?
     
     var body: some View {
-    
-        /*ScrollView{
-                HStack {
-                      
-                    if let image = image {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 200)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding()
-                        
-                    } else {
-                        Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 200)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding()
-                        
-                    }
-                    
-                    if let videoURL = videoURL {
-                        
-                        VideoPlayer(player: AVPlayer(url: videoURL))
-                            .frame(height: 200)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding()
-
-                    } else {
-                        Image(systemName: "video")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 200)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .padding()
-                    }
-                    
-                    
-                        
-                    }
-                }
-            
-        
-            ZStack {
+        HStack{
+            Spacer()
+            Button( action: {
                 
-                LinearGradient(
-                    gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.cyan.opacity(0.2)]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing)
-                .edgesIgnoringSafeArea(.all)
+            }) {
+                Text("Photo")
+                    .frame(width: 60, height: 60)
+                    .foregroundStyle(.cyan)
+                    .background(Color.yellow)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                VStack {
-                    
-                    
-                    TextField("Tap to select", text: $waveSize)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        .cornerRadius(10)
-                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 10)
-                        .onTapGesture {
-                            
-                            withAnimation {
-                                isPickderVisible.toggle()
-                            }
-                            
-                        }
-                    
-                    if isPickderVisible {
-                        Picker("Wave size", selection: $waveSize) {
-                            Text("Shorebreak").tag("Shorebreak")
-                            Text("Minimal").tag("Minimal")
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .padding()
-                        .background(Color.white.opacity(0.9))
-                        .cornerRadius(10)
-                        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 5)
-                        .onChange(of: waveSize) {
-                            
-                            withAnimation{
-                                isPickderVisible = false
-                            }
-                        }
-                    }
-                    
-                }
+                
                 
             }
-            .cornerRadius(10)
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
-        */
+            
+            Spacer()
+            
+            Button( action: {
+                
+            }) {
+                Text("Video")
+                    .frame(width: 60, height: 60)
+                    .foregroundStyle(.white)
+                    .background(Color.brown)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+               
+            }
+            
+            Spacer()
+            
+        }
+    }
+}
+
+struct WaveInfoSwiftUIView: View {
+    
+    
+    @State private var waveSize: String = ""
+    @State private var selectedSize: String = ""
+    @State private var isSizeSelect: Bool = false
+    @State private var isPickerVisble: Bool = false
+    
+    var coordinate: CLLocationCoordinate2D
+    var timestamp: Date
+    @State var selectedImage: UIImage?
+    @State var selectedVideoURL: URL?
+    
+    var body: some View {
         NavigationView {
-            VStack {
+           
                 GeometryReader { geometry in
                     VStack{
                         Button(action: {
-                            isPickderVisible.toggle()
+                            isPickerVisble.toggle()
                         }) {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
+                            if let image = selectedImage {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .grayscale(0.7)
+                                    .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                            } else if let videoURL = selectedVideoURL {
+                                VideoPlayer(player: AVPlayer(url: videoURL))
+                                    .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                            } else {
+                                Image("Logo")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .grayscale(0.7)
+                                    .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
+                                    .cornerRadius(10)
+                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                                 
+                            }
+                                
+                        }.sheet(isPresented: $isPickerVisble) {
+                            MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
+                                .presentationDetents([.fraction(0.25), .medium, .large])
+                                .presentationDragIndicator(.visible)
+                            
+                            
                         }
+                        
+                        Form {
+                            Section("SIZE") {
+                                ZStack{
+                                    
+                                    TextField("shorebreak", text: $waveSize)
+                                        .disabled(true)
+                                }
+                            }
+                            
+                            .headerProminence(.increased)
+                            .onTapGesture {
+                                withAnimation {
+                                    isSizeSelect.toggle()
+                                }
+                            }
+                            
+                            if isSizeSelect {
+                                Picker("", selection: $selectedSize){
+                                    Text("Shorebreak").tag("Shorebreak")
+                                    Text("minimal")
+                                        .tag("minimal")
+                                }
+                                .pickerStyle(.menu)
+                                .labelsHidden()
+                                .frame(width: .infinity)
+                                .onChange( of: selectedSize) {
+                                   
+                                    waveSize = selectedSize
+                                    withAnimation{
+                                        isSizeSelect = false
+                                    }
+                                }
+                                
+                                
+                            }
+                        }.cornerRadius(20)
+                            .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                       
+                        //locations
+                        VStack(alignment: .trailing) {
+                            
+                            Text("latitude: \(coordinate.latitude)")
+                            
+                            Text("longitude:\(coordinate.longitude)")
+                            
+                            
+                            
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing)
+                        //The time
+                        Text("\(timestamp)")
                     }
                 }
                 .frame(maxHeight: .infinity)
-                .background(Color.white)
-                .cornerRadius(20)
-                .padding()
-                //locations
-                VStack(alignment: .trailing) {
-                    
-                    Text("latitude: \(coordinate.latitude)")
-                    
-                    Text("longitude:\(coordinate.longitude)")
-                    
-                    
-                    
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing)
-                //The time
-                Text("\(timestamp)")
-            }
+                .ignoresSafeArea()
+                
+             
+          
     
         }
         
