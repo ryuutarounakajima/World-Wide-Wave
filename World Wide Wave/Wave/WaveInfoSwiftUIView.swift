@@ -22,7 +22,7 @@ struct MediaPicker: View {
             }) {
                 Text("Photo")
                     .frame(width: 60, height: 60)
-                    .foregroundStyle(.cyan)
+                    .foregroundStyle(.brown)
                     .background(Color.yellow)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .bold()
@@ -53,10 +53,12 @@ struct MediaPicker: View {
 
 struct WaveInfoSwiftUIView: View {
     
-    
+    //Wave size select
     @State private var waveSize: String = ""
     @State private var selectedSize: String = ""
     @State private var isSizeSelect: Bool = false
+    //Wave condition select
+    
     @State private var isPickerVisble: Bool = false
     
     var coordinate: CLLocationCoordinate2D
@@ -69,6 +71,7 @@ struct WaveInfoSwiftUIView: View {
            
                 GeometryReader { geometry in
                     VStack{
+                        
                         Button(action: {
                             isPickerVisble.toggle()
                         }) {
@@ -106,20 +109,23 @@ struct WaveInfoSwiftUIView: View {
                        
                                 Form {
                                     
-                                    Section(header:
-                                        Text("Size")
-                                            .font(.headline)
-                                            
-                                            .cornerRadius(10)
-                                            .shadow(radius: 2, x: 4, y: 6)
-                                    
-                                    )
-                                    {
-                                        ZStack{
-                                            Text(waveSize)
-                                        }
+                                    Section(header: Button(action: {
+                                        isSizeSelect.toggle()
+                                            }){
+                                             Text("Size")
+                                                    .font(.headline)
+                                                    .foregroundStyle(.white)
+                                                    .fontWeight(.bold)
+                                                    .shadow(radius: 2, x: 4, y: 6)
+                                                    .padding([.leading,.trailing])
+                                                    .background(.secondary)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                                                    .shadow(radius: 2, x: 4, y: 6)
+                                            }){
                                         if isSizeSelect {
                                             Picker("", selection: $selectedSize){
+                                                Text("")
+                                                    .tag("")
                                                 Text("Shorebreak")
                                                     .tag("Shorebreak")
                                                 Text("Small")
@@ -139,27 +145,19 @@ struct WaveInfoSwiftUIView: View {
                                             .labelsHidden()
                                             .frame(width: .infinity)
                                             .onChange( of: selectedSize) {
-                                                
                                                 waveSize = selectedSize
                                                 withAnimation{
                                                     isSizeSelect = false
                                                 }
                                             }
-                                            
-                                            
                                         }
+                                        //Logged wave size
+                                        Text(waveSize)
                                     }
-                                    .headerProminence(.increased)
-                                    .onTapGesture {
-                                        withAnimation {
-                                            isSizeSelect.toggle()
-                                        }
-                                    }
-                                   
                                     
-                                   
-                                    
-                                }.cornerRadius(20)
+
+                                }
+                                .cornerRadius(20)
                                     .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                         
                         //locations
