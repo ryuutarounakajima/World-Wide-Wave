@@ -10,46 +10,9 @@ import MapKit
 import CoreLocation
 import AVKit
 
-struct MediaPicker: View {
-    @Binding var selectedImage: UIImage?
-    @Binding var selectedVideoURL: URL?
+
     
-    var body: some View {
-        HStack{
-            Spacer()
-            Button( action: {
-                
-            }) {
-                Text("Photo")
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(.brown)
-                    .background(Color.yellow)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .bold()
-                
-                
-            }
-            
-            Spacer()
-            
-            Button( action: {
-                
-            }) {
-                Text("Video")
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(.white)
-                    .background(Color.brown)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .bold()
-                
-               
-            }
-            
-            Spacer()
-            
-        }
-    }
-}
+
 
 struct WaveInfoSwiftUIView: View {
     
@@ -57,9 +20,13 @@ struct WaveInfoSwiftUIView: View {
     @State private var waveSize: String = ""
     @State private var selectedSize: String = ""
     @State private var isSizeSelect: Bool = false
+    @State private var waveSizes: [(key: String, value: String)] = [ ("" , ""), ("Shorebreak" , "Shorebreak"), ("Small" , "Small"), ("Chest-high" , "Chest-high"), ("Head-high", "Head-high"), ("Overhead", "Overhead"), ("Double", "Double"), ("Triple over", "Triple over")
+    ]
+    
     //Wave condition select
     
-    @State private var isPickerVisble: Bool = false
+    //Photo picker visible
+    @State private var isPickerVisable: Bool = false
     
     var coordinate: CLLocationCoordinate2D
     var timestamp: Date
@@ -73,33 +40,27 @@ struct WaveInfoSwiftUIView: View {
                     VStack{
                         
                         Button(action: {
-                            isPickerVisble.toggle()
+                            isPickerVisable.toggle()
                         }) {
                             if let image = selectedImage {
                                 Image(uiImage: image)
                                     .resizable()
-                                    .scaledToFill()
-                                    .grayscale(0.7)
                                     .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                                    .modifier(MediaFrameModifier())
+                                    
                             } else if let videoURL = selectedVideoURL {
                                 VideoPlayer(player: AVPlayer(url: videoURL))
-                                    .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                                    .modifier(MediaFrameModifier())
                             } else {
                                 Image("Logo")
                                     .resizable()
-                                    .scaledToFill()
-                                    .grayscale(0.7)
                                     .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
-                                    .cornerRadius(10)
-                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                                    .modifier(MediaFrameModifier())
+                                    
                                 
                             }
                             
-                        }.sheet(isPresented: $isPickerVisble) {
+                        }.sheet(isPresented: $isPickerVisable) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
                                 .presentationDetents([.fraction(0.25), .medium, .large])
                                 .presentationDragIndicator(.visible)
@@ -113,33 +74,14 @@ struct WaveInfoSwiftUIView: View {
                                         isSizeSelect.toggle()
                                             }){
                                              Text("Size")
-                                                    .font(.headline)
-                                                    .foregroundStyle(.white)
-                                                    .fontWeight(.bold)
-                                                    .shadow(radius: 2, x: 4, y: 6)
-                                                    .padding([.leading,.trailing])
-                                                    .background(.secondary)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                                                    .shadow(radius: 2, x: 4, y: 6)
+                                                    .headerProminence(.increased)
+                                                    .modifier(SectionBuutonModifier())
                                             }){
                                         if isSizeSelect {
                                             Picker("", selection: $selectedSize){
-                                                Text("")
-                                                    .tag("")
-                                                Text("Shorebreak")
-                                                    .tag("Shorebreak")
-                                                Text("Small")
-                                                    .tag("Small")
-                                                Text("Chest-high")
-                                                    .tag("Chest-high")
-                                                Text("Head-high")
-                                                    .tag("Head-high")
-                                                Text("Overhead")
-                                                    .tag("Overhead")
-                                                Text("Double")
-                                                    .tag("Double")
-                                                Text("Triple over")
-                                                    .tag("Triple over")
+                                                ForEach(waveSizes, id: \.key) { size in
+                                                    Text(size.value).tag(size.key)
+                                                }
                                             }
                                             .pickerStyle(.wheel)
                                             .labelsHidden()
@@ -153,11 +95,10 @@ struct WaveInfoSwiftUIView: View {
                                         }
                                         //Logged wave size
                                         Text(waveSize)
-                                    }
-                                    
-
+                                            }
+    
                                 }
-                                .cornerRadius(20)
+                                    .cornerRadius(20)
                                     .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                         
                         //locations
@@ -174,6 +115,7 @@ struct WaveInfoSwiftUIView: View {
                         .padding(.trailing)
                         //The time
                         Text("\(timestamp)")
+                            .padding([.leading, .trailing, .bottom])
                     }
                     
                 }
