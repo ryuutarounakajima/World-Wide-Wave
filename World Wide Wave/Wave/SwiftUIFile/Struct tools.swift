@@ -71,7 +71,7 @@ struct SectionButtonModifier: ViewModifier {
     
     @Binding var isSelected: Bool
     
-    var shadowColor: Color = Color.black.opacity(0.6)
+    var shadowColor: Color = Color.black.opacity(0.2)
     var shadowRadius: CGFloat = 9
     var shadowOffsetX: CGFloat = 3
     var shadowOffsetY: CGFloat = 6

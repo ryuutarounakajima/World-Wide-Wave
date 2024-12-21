@@ -27,7 +27,7 @@ struct WaveInfoSwiftUIView: View {
     @State private var waveCondition: String = ""
     @State private var selectedCondition: String = ""
     @State private var isConditionSelect: Bool = false
-    @State private var waveConditions: [(key: String, value: String)] = [("", ""), ("Shorebreak", "Shorebreak"), ("Mushy", "Mushy"), ("Choppy", "Choppy"), ("Clean", "Clean"), ("Glass", "Glass"), ("Rippable", "Rippable"), ("Barrels", "Barrels"), ("Peaky", "Peaky"), ("Gnarly", "Gnarly"), ]
+    @State private var waveConditions: [(key: String, value: String)] = [("", ""), ("Shorebreak", "Shorebreak"), ("Choppy", "Choppy"), ("Mushy", "Mushy"), ("Windy", "windy"), ("Clean", "Clean"), ("Glass", "Glass"), ("Rippable", "Rippable"), ("Barrels", "Barrels"), ("Peaky", "Peaky"), ("Gnarly", "Gnarly"), ]
                                     
     
     //Photo picker visible
@@ -75,17 +75,15 @@ struct WaveInfoSwiftUIView: View {
                         
                         //info form
                         Form {
+                            
                                     //wave size section
                                     Section(header: Button(action: {
                                         isSizeSelect.toggle()
                                             }){
-                                                ZStack {
-                                                    
-                                                    
                                                     Text("Size")
                                                            .headerProminence(.increased)
                                                            .modifier(SectionButtonModifier(isSelected: $isSizeSelect))
-                                                }
+                                                
                                              
                                             })
                                     {
@@ -138,6 +136,10 @@ struct WaveInfoSwiftUIView: View {
                                         
                                         Text(waveCondition)
                                     }
+                                    
+                                    //wind direction
+                            
+                                    //wind　strength
     
                         }
                         .cornerRadius(20)
