@@ -20,10 +20,15 @@ struct WaveInfoSwiftUIView: View {
     @State private var waveSize: String = ""
     @State private var selectedSize: String = ""
     @State private var isSizeSelect: Bool = false
-    @State private var waveSizes: [(key: String, value: String)] = [ ("" , ""), ("Shorebreak" , "Shorebreak"), ("Small" , "Small"), ("Chest-high" , "Chest-high"), ("Head-high", "Head-high"), ("Overhead", "Overhead"), ("Double", "Double"), ("Triple over", "Triple over")
+    @State private var waveSizes: [(key: String, value: String)] = [ ("" , ""), ("Small" , "Small"), ("Chest-high" , "Chest-high"), ("Head-high", "Head-high"), ("Overhead", "Overhead"), ("Double", "Double"), ("Triple over", "Triple over")
     ]
     
     //Wave condition select
+    @State private var waveCondition: String = ""
+    @State private var selectedCondition: String = ""
+    @State private var isConditionSelect: Bool = false
+    @State private var waveConditions: [(key: String, value: String)] = [("", ""), ("Shorebreak", "Shorebreak"), ("Mushy", "Mushy"), ("Choppy", "Choppy"), ("Clean", "Clean"), ("Glass", "Glass"), ("Rippable", "Rippable"), ("Barrels", "Barrels"), ("Peaky", "Peaky"), ("Gnarly", "Gnarly"), ]
+                                    
     
     //Photo picker visible
     @State private var isPickerVisable: Bool = false
@@ -39,6 +44,7 @@ struct WaveInfoSwiftUIView: View {
                 GeometryReader { geometry in
                     VStack{
                         
+                        //Image select button
                         Button(action: {
                             isPickerVisable.toggle()
                         }) {
@@ -59,7 +65,6 @@ struct WaveInfoSwiftUIView: View {
                                     
                                 
                             }
-                            
                         }.sheet(isPresented: $isPickerVisable) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
                                 .presentationDetents([.fraction(0.25), .medium, .large])
@@ -67,16 +72,23 @@ struct WaveInfoSwiftUIView: View {
                             
                             
                         }
-                       
-                                Form {
-                                    
+                        
+                        //info form
+                        Form {
+                                    //wave size section
                                     Section(header: Button(action: {
                                         isSizeSelect.toggle()
                                             }){
-                                             Text("Size")
-                                                    .headerProminence(.increased)
-                                                    .modifier(SectionBuutonModifier())
-                                            }){
+                                                ZStack {
+                                                    
+                                                    
+                                                    Text("Size")
+                                                           .headerProminence(.increased)
+                                                           .modifier(SectionButtonModifier(isSelected: $isSizeSelect))
+                                                }
+                                             
+                                            })
+                                    {
                                         if isSizeSelect {
                                             Picker("", selection: $selectedSize){
                                                 ForEach(waveSizes, id: \.key) { size in
@@ -95,11 +107,41 @@ struct WaveInfoSwiftUIView: View {
                                         }
                                         //Logged wave size
                                         Text(waveSize)
+                                    }
+                                    
+                                    //wave condition section
+                                    Section(header:
+                                                Button(action: {
+                                        isConditionSelect.toggle()
+                                    }){
+                                        Text("Conditon")
+                                            .headerProminence(.increased)
+                                            .modifier(SectionButtonModifier(isSelected: $isConditionSelect))
+                                    })
+                                    {
+                                        if isConditionSelect {
+                                            Picker("", selection: $selectedCondition) {
+                                                ForEach (waveConditions, id: \.key) { condition in
+                                                    Text(condition.value).tag(condition.key)
                                             }
+                                            }.pickerStyle(.wheel)
+                                                .labelsHidden()
+                                                .frame(width: .infinity)
+                                                .onChange(of: selectedCondition) {
+                                                    waveCondition = selectedCondition
+                                                    
+                                                    withAnimation{
+                                                        isConditionSelect = false
+                                                    }
+                                                }
+                                        }
+                                        
+                                        Text(waveCondition)
+                                    }
     
-                                }
-                                    .cornerRadius(20)
-                                    .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
+                        }
+                        .cornerRadius(20)
+                        .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                         
                         //locations
                         VStack(alignment: .trailing) {

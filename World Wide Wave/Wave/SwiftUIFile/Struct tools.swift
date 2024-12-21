@@ -67,7 +67,10 @@ struct MediaFrameModifier: ViewModifier {
     }
 }
 
-struct SectionBuutonModifier: ViewModifier {
+struct SectionButtonModifier: ViewModifier {
+    
+    @Binding var isSelected: Bool
+    
     var shadowColor: Color = Color.black.opacity(0.6)
     var shadowRadius: CGFloat = 9
     var shadowOffsetX: CGFloat = 3
@@ -76,12 +79,14 @@ struct SectionBuutonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.headline)
-            .foregroundStyle(.white)
             .fontWeight(.bold)
+            .foregroundStyle(.white)
             .shadow(color: shadowColor, radius: shadowRadius, x: shadowOffsetX, y: shadowOffsetY)
             .padding([.leading,.trailing])
-            .background(.secondary)
-            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .background(.primary)
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .scaleEffect(isSelected ? 1.2 : 1)
+            .animation(.easeInOut(duration: 0.3), value: isSelected)
             
     }
 }
