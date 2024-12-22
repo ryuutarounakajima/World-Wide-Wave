@@ -90,3 +90,72 @@ struct SectionButtonModifier: ViewModifier {
             
     }
 }
+
+struct SliderModifier: View {
+    
+    @Binding var  value: Double
+    let range: ClosedRange<Double>
+    let gradient: Gradient
+    
+    var body: some View {
+        GeometryReader { geometry in
+            
+            let width = geometry.size.width
+            let height = geometry.size.height
+            let progress = CGFloat(value - range.lowerBound) / (range.upperBound - range.lowerBound)
+            let handlePosition = width * progress
+            
+            ZStack {
+                
+                LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing)
+                    .frame(height: height / 2 )
+                    .cornerRadius(height / 2)
+                    .shadow(color: .gray.opacity(0.4), radius: 5, x: 0, y: 2)
+                    
+                    
+                Circle()
+                    .fill(Color.black)
+                    .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+                    .frame(width: height, height: height / 2)
+                    .position(x: handlePosition, y: height / 2)
+                    .gesture(
+                        DragGesture()
+                            .onChanged {
+                                drag in
+                                let newValue = Double(drag.location.x / width) * (range.upperBound - range.lowerBound) + range.lowerBound
+                                
+                                value = min(max(newValue, range.lowerBound), range.upperBound)
+                                
+                                print("\(value)")
+                            }
+                    )
+                    .animation(.easeInOut(duration: 0.2), value: value)
+                
+            }
+            
+
+            
+        }
+       
+        
+    }
+        
+        
+}
+
+#Preview {
+    struct sliderPreview: View {
+        @State private var sliderValue: Double = 0.0
+        let range = 0.0...100.0
+        let gradient = Gradient(colors: [.blue, .red])
+        
+        var body: some View {
+            VStack {
+                SliderModifier(value: $sliderValue, range: range, gradient: gradient)
+                Text("\(sliderValue)")
+            }
+        }
+    }
+    return sliderPreview()
+    
+}
