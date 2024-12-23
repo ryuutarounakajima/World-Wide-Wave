@@ -27,7 +27,7 @@ struct WaveInfoSwiftUIView: View {
     @State private var waveCondition: String = ""
     @State private var selectedCondition: String = ""
     @State private var isConditionSelect: Bool = false
-    @State private var waveConditions: [(key: String, value: String)] = [("", ""), ("Shorebreak", "Shorebreak"), ("Choppy", "Choppy"), ("Mushy", "Mushy"), ("Windy", "windy"), ("Clean", "Clean"), ("Glass", "Glass"), ("Rippable", "Rippable"), ("Barrels", "Barrels"), ("Peaky", "Peaky"), ("Gnarly", "Gnarly"), ("Close out", "Close out") ]
+    @State private var waveConditions: [(key: String, value: String)] = [("", ""), ("Go home", "Go home"), ("Choppy", "Choppy"), ("Mushy", "Mushy"), ("Windy", "windy"), ("Clean", "Clean"), ("Glass", "Glass"), ("Rippable", "Rippable"), ("Barrels", "Barrels"), ("Peaky", "Peaky"), ("Gnarly", "Gnarly"), ("Close out", "Close out") ]
     
     //Swell
     @State private var swell: String = ""
@@ -40,7 +40,23 @@ struct WaveInfoSwiftUIView: View {
     @State private var selectedWind: String = ""
     @State private var isWindSelected: Bool = false
     @State private var winds: [(key: String, value: String)] = [("Offshore", "Offshore"), ("Onshore" , "Onshore"), ("Side off", "Side off"), ("Side on", "Side on"), ("ClossShore", "ClossShore")]
-    @State private var windStrengthSliderValue: Double = 0.0
+    @State private var windStrengthValue: Double = 0.0
+    
+    //Tide
+    @State private var tide: String = ""
+    @State private var selectedTide: String = ""
+    @State private var isTideSelected: Bool = false
+    @State private var tides: [(key: String, value: String)] = [
+        ("", ""), ("Spring Tide", "Spring Tide"), ("Moderate Tide", "Moderate Tide"), ("Neap Tide", "Neap Tide"), ("Long Tide", "Long Tide"), ("Young Tide", "Young Tide")
+    ]
+    @State private var tideValue: Double = 0.0
+    
+    //Breaks and water depth
+    @State private var breakTipe: String = ""
+    @State private var selectedBreaks: String = ""
+    @State private var isBreaksSelected: Bool = false
+    @State private var breakTipes: [(key: String, value: String)] = [((""), ("")), ("ShoreBreak", "Shorebreak"), ("Beachbreak", "Beachbreak"), ("Poindbreak", "Pointbreak"), ("Sandbar", "Sandbar"), ("Reef", "Reef")]
+    @State private var waterDepthValue: Double = 0.0
                                     
     
     //Photo picker visible
@@ -118,6 +134,9 @@ struct WaveInfoSwiftUIView: View {
                                 }
                                 //Logged wave size
                                 Text(waveSize)
+                                    .font(.custom("AvenirNext-Bold", size: 14))
+                                    .scaleEffect(1.2)
+                                        .shadow(radius: 2)
                             }
                             
                             //wave condition section
@@ -148,6 +167,9 @@ struct WaveInfoSwiftUIView: View {
                                 }
                                 
                                 Text(waveCondition)
+                                    .font(.custom("AvenirNext-Bold", size: 14))
+                                    .scaleEffect(1.2)
+                                        .shadow(radius: 2)
                             }
                             
                             //swell
@@ -178,6 +200,9 @@ struct WaveInfoSwiftUIView: View {
                                 }
                                 //Logged swell
                                 Text(swell)
+                                    .font(.custom("AvenirNext-Bold", size: 14))
+                                    .scaleEffect(1.2)
+                                        .shadow(radius: 2)
                             }
                             
                             //wind direction
@@ -211,14 +236,127 @@ struct WaveInfoSwiftUIView: View {
                                     VStack {
                                         
                                         Text(wind)
-                                        Spacer()
-                                        SliderModifier(value: $windStrengthSliderValue, range: 0...100, gradient:  Gradient(colors: [.blue, .red]))
+                                            .font(.custom("AvenirNext-Bold", size: 14))
+                                            .scaleEffect(1.2)
+                                            .shadow(radius: 2)
+                                        
+                                        HStack {
+                                            
+                                            Text("Strength")
+                                                .font(.custom("AvenirNext-Bold", size: 14))
+                                                    .scaleEffect(0.8)
+                                                    .shadow(radius: 2)
+                                            
+                                            Spacer()
+                                            
+                                            SliderModifier(value: $windStrengthValue, range: 0...100, gradient:  Gradient(colors: [.blue, .red]))
+                                                
+                                            
+                                        }
+                                        
                                         
                                     }
-                                
-                                
-                               
                             }
+                            
+                            //tide
+                            Section(header: Button(action: {
+                                isTideSelected.toggle()
+                            }){
+                                Text("Tide")
+                                    .headerProminence(.increased)
+                                    .modifier(SectionButtonModifier(isSelected: $isTideSelected))
+                            })
+                            {
+                                if isTideSelected {
+                                    Picker("", selection: $selectedTide) {
+                                        ForEach(tides, id: \.key) {
+                                            tide in
+                                            Text(tide.value).tag(tide.key)
+                                        }
+                                    }
+                                    .pickerStyle(.wheel)
+                                    .labelsHidden()
+                                    .frame(maxWidth: .infinity)
+                                    .onChange(of: selectedTide) {
+                                        tide = selectedTide
+                                        withAnimation {
+                                            isTideSelected = false
+                                        }
+                                    }
+                                }
+                                VStack {
+                                    
+                                    Text(tide)
+                                        .font(.custom("AvenirNext-Bold", size: 14))
+                                        .scaleEffect(1.2)
+                                            .shadow(radius: 2)
+                                    
+                                    HStack {
+                                        
+                                        Text("Low tide")
+                                            .font(.custom("AvenirNext-Bold", size: 14))
+                                                .scaleEffect(0.8)
+                                                .shadow(radius: 2)
+                                        
+                                        SliderModifier(value: $tideValue, range: 0...100, gradient: Gradient(colors:[.cyan, .yellow]))
+                                        
+                                        Text("High tide")
+                                            .font(.custom("AvenirNext-Bold", size: 14))
+                                                .scaleEffect(0.8)
+                                                .shadow(radius: 2)
+                                    }
+                                    
+                                }
+                            }
+                            
+                            //Breaks and water depth
+                            Section(header: Button(action: {
+                                isBreaksSelected.toggle()
+                            }){
+                                Text("Break")
+                                    .headerProminence(.increased)
+                                    .modifier(SectionButtonModifier(isSelected: $isBreaksSelected))
+                            })
+                            {
+                                if isBreaksSelected {
+                                    Picker("", selection: $selectedBreaks) {
+                                        ForEach(breakTipes, id: \.key) {
+                                            breakTipe in
+                                            Text(breakTipe.value)
+                                                .tag(breakTipe.key)
+                                        }
+                                    }
+                                    .pickerStyle(.wheel)
+                                    .labelsHidden()
+                                    .frame(maxWidth: .infinity)
+                                    .onChange(of: selectedBreaks) {
+                                        breakTipe = selectedBreaks
+                                        withAnimation {
+                                            isBreaksSelected = false
+                                        }
+                                    }
+                                }
+                                VStack {
+                                    
+                                    Text(breakTipe)
+                                        .font(.custom("AvenirNext-Bold", size: 14))
+                                        .scaleEffect(1.2)
+                                            .shadow(radius: 2)
+                                    
+                                    HStack {
+                                        
+                                        Text("Depth")
+                                            .font(.custom("AvenirNext-Bold", size: 14))
+                                                .scaleEffect(0.8)
+                                                .shadow(radius: 2)
+                                        SliderModifier(value: $waterDepthValue, range: 0...100, gradient: Gradient(colors: [.brown, .cyan, .blue, .black]))
+                                            
+                                    }
+                                    
+                                }
+                            }
+                            
+                            
                         
     
                         }
