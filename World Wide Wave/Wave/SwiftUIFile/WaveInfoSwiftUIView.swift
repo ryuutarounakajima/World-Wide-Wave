@@ -393,7 +393,7 @@ struct WaveInfoSwiftUIView: View {
                                     
                                     HStack {
                                         
-                                       Text("Waterr")
+                                       Text("Water")
                                             .font(.custom("AvenirNext-Bold", size: 14))
                                             .scaleEffect(0.8)
                                             .shadow(radius: 2)
