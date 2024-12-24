@@ -64,6 +64,9 @@ struct WaveInfoSwiftUIView: View {
     @State private var isWaxSeleted = false
     @State private var waterTemperaturevalue: Double = 0.0
     @State private var waxes: [(key: String, value: String)] = [("", ""), ("Cold", "Cold"), ("Cool", "Cool"), ("Warm", "Warm"), ("Tropical", "Tropical")]
+    
+    //Button
+    @State private var isRecordedButton = false
                                     
     
     //Photo picker visible
@@ -411,11 +414,49 @@ struct WaveInfoSwiftUIView: View {
                         .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
                         
                         //locations
-                        VStack(alignment: .trailing) {
+                        VStack {
                             
-                            Text("latitude: \(coordinate.latitude)")
+                            HStack {
+                                
+                                
+                                Spacer()
+                                VStack {
+                                    
+                                    Text("latitude: \(coordinate.latitude)")
+                                    
+                                    Text("longitude:\(coordinate.longitude)")
+                                }
+                                
+                                Spacer()
+                                Button(action: {
+                                    withAnimation(.easeInOut(duration: 0.2)){
+                                        isRecordedButton.toggle()
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                        isRecordedButton.toggle()
+                                    }
+                                    
+                                    print("last for today")
+                                }) {
+                                    Image("Logo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: geometry.size.width * 0.1, height: geometry.size.height * 0.1)
+                                        .background(.cyan.opacity(0.3))
+                                        .clipShape(Circle())
+                                        .shadow(radius: 3, x: 5, y: 5)
+                                        .overlay(
+                                                                   Circle()
+                                                                       .stroke(Color.white, lineWidth: 2)
+                                                               )
+                                                               .shadow(color: .gray.opacity(0.6), radius: 5, x: 5, y: 5)
+                                                               .scaleEffect(isRecordedButton ? 0.9 : 1.0) // ボタン押下時のアニメーション
+                                                               .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0.5), value: isRecordedButton)
+                                }
+                                Spacer()
+                               
+                            }
                             
-                            Text("longitude:\(coordinate.longitude)")
                             
                             
                             
