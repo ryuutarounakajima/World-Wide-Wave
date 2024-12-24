@@ -52,11 +52,18 @@ struct WaveInfoSwiftUIView: View {
     @State private var tideValue: Double = 0.0
     
     //Breaks and water depth
-    @State private var breakTipe: String = ""
+    @State private var breakType: String = ""
     @State private var selectedBreaks: String = ""
     @State private var isBreaksSelected: Bool = false
     @State private var breakTipes: [(key: String, value: String)] = [((""), ("")), ("ShoreBreak", "Shorebreak"), ("Beachbreak", "Beachbreak"), ("Poindbreak", "Pointbreak"), ("Sandbar", "Sandbar"), ("Reef", "Reef")]
     @State private var waterDepthValue: Double = 0.0
+    
+    //Wax
+    @State private var wax: String = ""
+    @State private var selectedWax: String = ""
+    @State private var isWaxSeleted = false
+    @State private var waterTemperaturevalue: Double = 0.0
+    @State private var waxes: [(key: String, value: String)] = [("", ""), ("Cold", "Cold"), ("Cool", "Cool"), ("Warm", "Warm"), ("Tropical", "Tropical")]
                                     
     
     //Photo picker visible
@@ -330,7 +337,7 @@ struct WaveInfoSwiftUIView: View {
                                     .labelsHidden()
                                     .frame(maxWidth: .infinity)
                                     .onChange(of: selectedBreaks) {
-                                        breakTipe = selectedBreaks
+                                        breakType = selectedBreaks
                                         withAnimation {
                                             isBreaksSelected = false
                                         }
@@ -338,7 +345,7 @@ struct WaveInfoSwiftUIView: View {
                                 }
                                 VStack {
                                     
-                                    Text(breakTipe)
+                                    Text(breakType)
                                         .font(.custom("AvenirNext-Bold", size: 14))
                                         .scaleEffect(1.2)
                                             .shadow(radius: 2)
@@ -356,9 +363,49 @@ struct WaveInfoSwiftUIView: View {
                                 }
                             }
                             
-                            
-                        
-    
+                            //Wax
+                            Section(header:  Button(action: {
+                                isWaxSeleted.toggle()
+                            }){
+                                Text("Wax")
+                                    .headerProminence(.increased)
+                                    .modifier(SectionButtonModifier(isSelected: $isWaxSeleted))
+                            }) {
+                                if isWaxSeleted {
+                                    Picker("", selection: $selectedWax) {
+                                        ForEach(waxes, id: \.key) {
+                                            wax in Text(wax.value).tag(wax.key)
+                                        }
+                                    }.pickerStyle(.wheel)
+                                        .labelsHidden()
+                                        .onChange(of: selectedWax) {
+                                            wax = selectedWax
+                                            withAnimation {
+                                                isWaxSeleted = false
+                                            }
+                                        }
+                                }
+                                VStack {
+                                    Text(wax)
+                                        .font(.custom("AvenirNext-Bold", size: 14))
+                                        .scaleEffect(1.2)
+                                            .shadow(radius: 2)
+                                    
+                                    HStack {
+                                        
+                                       Text("Waterr")
+                                            .font(.custom("AvenirNext-Bold", size: 14))
+                                            .scaleEffect(0.8)
+                                            .shadow(radius: 2)
+                                        
+                                        SliderModifier(value: $waterTemperaturevalue, range: 0...100, gradient: Gradient(colors: [.white, .blue, .red]))
+                                        
+                                            
+                                    }
+                                }
+                            }
+                                
+                                
                         }
                         .cornerRadius(20)
                         .shadow(color: .black.opacity(0.2), radius: 9, x: 3, y: 6)
