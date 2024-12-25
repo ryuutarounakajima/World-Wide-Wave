@@ -12,39 +12,73 @@ struct MediaPicker: View {
     @Binding var selectedVideoURL: URL?
     
     var body: some View {
-        HStack{
-            Spacer()
-            Button( action: {
-                
-            }) {
-                Text("Photo")
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(.brown)
-                    .background(Color.yellow)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .bold()
-                
-                
+        GeometryReader { geometry in
+            VStack {
+                Spacer()
+                HStack{
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "book")
+                            .symbolRenderingMode(.palette)
+                            .font(.system(size: geometry.size.width * 0.1))
+                            .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.3)
+                            .foregroundStyle(.green, .blue)
+                            .background(Color.purple)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .bold()
+                            .rotationEffect(.degrees(5))
+                            .animation(.spring, value: UUID())
+                    }
+                    Spacer()
+
+                    Button( action: {
+                        
+                    }) {
+                        Image(systemName: "iphone.rear.camera")
+                            .symbolRenderingMode(.palette)
+                            .font(.system(size: geometry.size.width * 0.1))
+                            .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.3)
+                            .foregroundStyle(.brown, .black)
+                            .background(Color.yellow)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .bold()
+                            .scaleEffect(1.1)
+                            .animation(.easeIn(duration: 0.5), value: UUID())
+                        
+                        
+                    }
+                    Spacer()
+                    
+                    
+                    
+                    Button( action: {
+                        
+                    }) {
+                        Image(systemName: "video")
+                            .symbolRenderingMode(.palette)
+                            .font(.system(size: geometry.size.width * 0.1))
+                            .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.3)
+                            .foregroundStyle(.white, .gray)
+                            .background(Color.brown)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .bold()
+                            .opacity(0.8)
+                            .rotationEffect(.degrees(-5))
+                            .animation(.easeInOut(duration: 0.8), value: UUID())
+                       
+                    }
+                    Spacer()
+                    
+                 
+                    
+                }
+                Spacer()
             }
-            
-            Spacer()
-            
-            Button( action: {
-                
-            }) {
-                Text("Video")
-                    .frame(width: 60, height: 60)
-                    .foregroundStyle(.white)
-                    .background(Color.brown)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .bold()
-                
-               
-            }
-            
-            Spacer()
             
         }
+       
     }
 }
 
@@ -142,8 +176,20 @@ struct SliderModifier: View {
         
         
 }
+//Media picker button preview
+struct MediaPickerButtonPreview: PreviewProvider {
+   @State static var selectedURL: URL? = nil
+   @State static var selectedUImage: UIImage? = nil
+    
+    static var previews: some View {
+        MediaPicker(selectedImage: $selectedUImage, selectedVideoURL: $selectedURL)
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
 
-#Preview {
+//Horizontal drag slider animation effect preview
+/*#Preview {
     struct sliderPreview: View {
         @State private var sliderValue: Double = 0.0
         let range = 0.0...100.0
@@ -159,3 +205,4 @@ struct SliderModifier: View {
     return sliderPreview()
     
 }
+*/

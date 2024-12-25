@@ -65,8 +65,10 @@ struct WaveInfoSwiftUIView: View {
     @State private var waterTemperaturevalue: Double = 0.0
     @State private var waxes: [(key: String, value: String)] = [("", ""), ("Cold", "Cold"), ("Cool", "Cool"), ("Warm", "Warm"), ("Tropical", "Tropical")]
     
-    //Button
+    //Record button
     @State private var isRecordedButton = false
+    @State private var showAlert: Bool = false
+   
                                     
     
     //Photo picker visible
@@ -106,7 +108,7 @@ struct WaveInfoSwiftUIView: View {
                             }
                         }.sheet(isPresented: $isPickerVisable) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
-                                .presentationDetents([.fraction(0.25), .medium, .large])
+                                .presentationDetents([.fraction(0.25)])
                                 .presentationDragIndicator(.visible)
                             
                             
@@ -428,15 +430,20 @@ struct WaveInfoSwiftUIView: View {
                                 }
                                 
                                 Spacer()
+                                //Recorded button
                                 Button(action: {
                                     withAnimation(.easeInOut(duration: 0.2)){
                                         isRecordedButton.toggle()
+                                       
                                     }
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                        isRecordedButton.toggle()
-                                    }
-                                    
-                                    print("last for today")
+                                        withAnimation(.easeInOut(duration: 0.2)){
+                                            isRecordedButton.toggle()
+                                            
+                                        }
+                                        
+                                        showAlert = true
+                                    } 
                                 }) {
                                     Image("Logo")
                                         .resizable()
@@ -453,6 +460,20 @@ struct WaveInfoSwiftUIView: View {
                                                                .scaleEffect(isRecordedButton ? 0.9 : 1.0) // ボタン押下時のアニメーション
                                                                .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0.5), value: isRecordedButton)
                                 }
+                                .alert("Are you an optimistionist?", isPresented: $showAlert) {
+                                    Button("Yes") {
+                                        print("Yes")
+                                        print("You are optimistic person from now!!")
+                                    }
+                                    Button("Yes") {
+                                        print("Yes")
+                                        print("You are optimistic person from now!!")
+                                        
+                                    }
+                                } message:{
+                                    Text("This will determine your future")
+                                }
+                                
                                 Spacer()
                                
                             }
@@ -462,10 +483,10 @@ struct WaveInfoSwiftUIView: View {
                             
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(.trailing)
+                        //.padding(.trailing)
                         //The time
-                        Text("\(timestamp)")
-                            .padding([.leading, .trailing, .bottom])
+                        //Text("\(timestamp)")
+                        .padding([.leading, .trailing, .bottom])
                     }
                     
                 }
