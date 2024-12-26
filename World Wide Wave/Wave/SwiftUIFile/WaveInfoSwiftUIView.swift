@@ -68,7 +68,12 @@ struct WaveInfoSwiftUIView: View {
     //Record button
     @State private var isRecordedButton = false
     @State private var showAlert: Bool = false
+    
+    @State private var overviewText: String = ""
+    @State private var overviewTextHeight: CGFloat = 40
    
+    @State private var journal: String = ""
+    @State private var journalTextHeight: CGFloat = 40
                                     
     
     //Photo picker visible
@@ -409,6 +414,33 @@ struct WaveInfoSwiftUIView: View {
                                     }
                                 }
                             }
+                                //OverView and Forecast
+                            Section(header: Text("Overview and Forcast")) {
+                                ZStack(alignment: .topLeading) {
+                                    if overviewText.isEmpty {
+                                        Text("How the surf? It's your prediction!")
+                                            .foregroundStyle(.gray)
+                                            .padding(.top, 8)
+                                            .padding(.leading, 4)
+                                    }
+                                    TextEditor(text: $overviewText)
+                                }
+                                }
+                                //Your own surfing journal
+                            Section(header: Text("Your own surfing journal")) {
+                                ZStack(alignment: .topLeading) {
+                                    if journal.isEmpty {
+                                        Text("This journal will not be shared publicly on social media.")
+                                            .foregroundStyle(.gray)
+                                            .padding(.top, 8)
+                                            .padding(.leading, 4)
+                                    }
+                                    TextEditor(text: $journal)
+                                        
+                                }
+                                }
+                            
+                           
                                 
                                 
                         }
