@@ -63,5 +63,16 @@
 
        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
        <string>The app retrieves location information in the background.</string>
-</dict>
+       
+       <key>NSCameraUsageDescription</key>
+       <string>This app requires access to the camera for capturing photos and videos.</string>
+       
+       <key>NSMicrophoneUsageDescription</key>
+       <string>This app requires access to the microphone for recording audio.</string>
+       
+       <key>NSPhotoLibraryUsageDescription</key>
+       <string>This app requires access to the photo library to select and upload photos or videos.</string>
+       
+       <key>NSPhotoLibraryAddUsageDescription</key>
+       <string>This app requires access to the photo library to save photos and videos.</string></dict>
 </plist>

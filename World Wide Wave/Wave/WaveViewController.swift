@@ -171,6 +171,7 @@ class WaveViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let waveInfoVC = WaveInfoViewContrroler()
         waveInfoVC.coordinate = selectedLocation!
            waveInfoVC.timestamp = Date()
+           waveInfoVC.hidesBottomBarWhenPushed = true
            
         navigationController?.pushViewController(waveInfoVC, animated: true)
        

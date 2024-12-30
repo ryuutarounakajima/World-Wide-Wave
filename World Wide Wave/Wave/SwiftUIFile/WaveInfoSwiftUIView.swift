@@ -78,6 +78,8 @@ struct WaveInfoSwiftUIView: View {
     
     //Photo picker visible
     @State private var isPickerVisable: Bool = false
+    @State private var cameraAutorized: Bool = false
+    private let cameraManager = CameraManager()
     
     var coordinate: CLLocationCoordinate2D
     var timestamp: Date
@@ -92,7 +94,12 @@ struct WaveInfoSwiftUIView: View {
                         
                         //Image select button
                         Button(action: {
-                            isPickerVisable.toggle()
+                            Task {
+                                cameraAutorized  = await cameraManager.requestCameraAccess()
+                                if cameraAutorized {
+                                    isPickerVisable.toggle()
+                                }
+                            }
                         }) {
                             if let image = selectedImage {
                                 Image(uiImage: image)
@@ -106,18 +113,23 @@ struct WaveInfoSwiftUIView: View {
                             } else {
                                 Image("Logo")
                                     .resizable()
+                                    .scaledToFill()
                                     .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
                                     .modifier(MediaFrameModifier())
                                     
                                 
                             }
-                        }.sheet(isPresented: $isPickerVisable) {
+                        }
+                        .fullScreenCover(isPresented: $isPickerVisable) {
+                            CameraPreviewView()
+                        }
+                        /*.sheet(isPresented: $isPickerVisable) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
                                 .presentationDetents([.fraction(0.25)])
                                 .presentationDragIndicator(.visible)
+                        */
                             
-                            
-                        }
+
                         
                         //info form
                         Form {
