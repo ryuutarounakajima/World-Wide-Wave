@@ -79,6 +79,7 @@ struct WaveInfoSwiftUIView: View {
     //Photo picker visible
     @State private var isPickerVisable: Bool = false
     @State private var cameraAutorized: Bool = false
+    @State private var captuteImage: UIImage?
     private let cameraManager = CameraManager()
     
     var coordinate: CLLocationCoordinate2D
@@ -101,9 +102,10 @@ struct WaveInfoSwiftUIView: View {
                                 }
                             }
                         }) {
-                            if let image = selectedImage {
+                            if let image = captuteImage {
                                 Image(uiImage: image)
                                     .resizable()
+                                    .scaledToFill()
                                     .frame(width: geometry.size.width * 1.0, height: geometry.size.height * 0.4)
                                     .modifier(MediaFrameModifier())
                                     
@@ -121,7 +123,7 @@ struct WaveInfoSwiftUIView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $isPickerVisable) {
-                            CameraPreviewView()
+                            CameraPreviewView(captureImage: $captuteImage, isCameraPresented: $isPickerVisable)
                         }
                         /*.sheet(isPresented: $isPickerVisable) {
                             MediaPicker(selectedImage: $selectedImage, selectedVideoURL: $selectedVideoURL)
